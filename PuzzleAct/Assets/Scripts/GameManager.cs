@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager current;
+    public static GameManager current;  //シングルトン用
 
     private void Awake()
     {
@@ -18,13 +19,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        
-    }
+    /// <summary>
+    /// シーンを切り替える
+    /// </summary>
+    /// <param name="now"></param>
+    /// <param name="next"></param>
+    public void ChangeScene(string now,string next)
+    {        
+        //現在のシーンを削除
+        SceneManager.UnloadSceneAsync(now);
 
-    void Update()
-    {
-        
+        //次のシーンを読み込み
+        SceneManager.LoadScene(next, LoadSceneMode.Additive);
     }
 }

@@ -32,4 +32,14 @@ public class GameManager : MonoBehaviour
         //次のシーンを読み込み
         SceneManager.LoadScene(next, LoadSceneMode.Additive);
     }
+
+    /// <summary>
+    /// アクティブシーンを変える
+    /// </summary>
+    /// <param name="name"></param>
+    public void ChangeActiveScene(string name)
+    {
+        Scene scene = SceneManager.GetSceneByName(name);
+        SceneManager.SetActiveScene(scene);
+    }
 }

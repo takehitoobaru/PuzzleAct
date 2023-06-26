@@ -25,6 +25,10 @@ public class Player : MonoBehaviour
         StartCoroutine(Run());
     }
 
+    private void Update()
+    {
+    }
+
     private void FixedUpdate()
     {
         GroundCheck();
@@ -48,10 +52,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Jump()
+    void Jump(float ang)
     {
-        angle = Mathf.PI / 4;
-        Vector2 jumpDir = new Vector2(Mathf.Cos(angle) * dir, Mathf.Sin(angle));
+        rb.velocity = Vector2.zero;
+        angle = ang * Mathf.Deg2Rad;
+        Vector2 jumpDir = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
         rb.AddForce(jumpDir * jumpSpeed, ForceMode2D.Impulse);
     }
 
@@ -93,20 +98,22 @@ public class Player : MonoBehaviour
             isStop = true;
         }
         else if(collision.tag == "LeftJump")
-        {
+        {            
+            Jump(45);
+
             if(dir != -1)
             {
                 Flip();
             }
-            Jump();
         }
         else if(collision.tag == "RightJump")
-        {
+        {            
+            Jump(45);
+
             if (dir != 1)
             {
                 Flip();
             }
-            Jump();
         }
     }
 }

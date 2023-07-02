@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager current;  //シングルトン用
 
+    public int hitPoint = 5;
+
     private void Awake()
     {
         if(current == null)
@@ -41,5 +43,13 @@ public class GameManager : MonoBehaviour
     {
         Scene scene = SceneManager.GetSceneByName(name);
         SceneManager.SetActiveScene(scene);
+    }
+
+    /// <summary>
+    /// HP減少
+    /// </summary>
+    public void Damage()
+    {
+        hitPoint--;
     }
 }
